@@ -1,0 +1,13 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="form-container">
+    <h1>Supprimer le post</h1>
+    <p>Êtes-vous sûr de vouloir supprimer le post : <strong>{{ post.title }}</strong> ?</p>
+    <form action="" method="post">
+        {% csrf_token %}
+        <input type="submit" value="OUI">
+    </form>
+    <a href="{% url 'post_list' %}">Annuler</a>
+</div>
+{% endblock %}

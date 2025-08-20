@@ -1,0 +1,77 @@
+/* Glassmorphism Card */
+.card {
+    background: rgba(255, 255, 255, 0.12);
+    border-radius: 16px;
+    padding: 20px;
+    box-shadow: 0 8px 32px rgba(0,0,0,0.25);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 1px solid rgba(255, 255, 255, 0.18);
+    display: flex;
+    flex-direction: column;
+    animation: fadeIn 0.8s ease forwards;
+    opacity: 0;
+}
+
+.card img {
+    width: 100%;
+    height: 160px;
+    object-fit: cover;
+    border-radius: 12px;
+    margin-bottom: 15px;
+}
+
+.card h2, .card h3 {
+    color: #fdf6e3;
+    margin-top: 0;
+}
+
+.card p {
+    color: #f5f2eb;
+    flex: 1;
+}
+
+/* Boutons */
+.btn {
+    display: inline-block;
+    background-color: rgba(255, 255, 255, 0.25);
+    color: #fdf6e3;
+    padding: 10px 16px;
+    border-radius: 8px;
+    font-weight: 500;
+    text-decoration: none;
+    transition: background-color 0.3s ease;
+    border: 1px solid rgba(255,255,255,0.3);
+}
+
+.btn:hover {
+    background-color: rgba(255, 255, 255, 0.4);
+}
+
+/* Déconnexion */
+.logout-btn {
+    background-color: rgba(230, 57, 70, 0.5);
+    padding: 10px 16px;
+    border-radius: 8px;
+    font-weight: 500;
+    text-decoration: none;
+    transition: background-color 0.3s ease;
+    border: 1px solid rgba(255,255,255,0.3);
+}
+
+.logout-btn:hover {
+    background-color: rgba(230, 57, 70, 0.7);
+}
+
+/* Modal suppression */
+.deleteModal {
+    display: none; 
+    position: fixed; 
+    top: 30%; 
+    left: 50%; 
+    transform: translate(-50%, -50%); 
+    background: white; 
+    border: 1px solid #ccc; 
+    padding: 20px; 
+    z-index: 1000;
+}

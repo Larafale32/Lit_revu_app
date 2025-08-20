@@ -1,0 +1,47 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="post-detail-container">
+    <h1>{{ post.title }}</h1>
+    <p>Posté par <a href="{% url 'profile' post.author.username %}">{{ post.author.username }}</a></p>
+    <ul>
+        <li>Description : {{ post.description }}</li>
+        <li>Date de création : {{ post.create_at }}</li>
+        <li>Active : {{ post.active|yesno }}</li>
+        {% if post.image %}
+        <li><img src="{{ post.image.image.url }}"></li>
+        {% endif %}
+        {% if post.official_homepage %}
+            <li><a href="{{ post.official_homepage }}" target="_blank" rel="noopener">Site officiel</a></li>
+        {% endif %}
+        <li>
+            <a href="{% url 'post-update' post.id %}">Modifier</a>
+            <a href="{% url 'post-delete' post.id %}">Supprimer</a>
+        </li>
+    </ul>
+
+    <h2>Commentaires</h2>
+
+    <ul>
+        {% for commentaire in post.commentaire.all %}
+        <li>
+            <strong>{{ commentaire.author }} :</strong> {{ commentaire.text }}
+            <br><small>Posté le {{ commentaire.created_at }}</small>
+            <a href="{% url 'update-comment' commentaire.id %}">Modifier</a>
+            <button type="button" class="delete-comment-button" data-comment-id="{{ commentaire.id }}">Supprimer</button>
+            <div class="deleteModal">
+                <p>Es-tu sûr de vouloir supprimer ce commentaire ?</p>
+                <form class="deleteForm" method="POST">
+                    {% csrf_token %}
+                    <button type="submit">Oui</button>
+                    <button class="bouton-non" type="button">Non</button>
+                </form>
+            </div>
+        </li>
+        {% empty %}
+            <li>Aucun commentaire pour ce post.</li>
+        {% endfor %}
+        <li><a href="{% url 'add-comment' post.id %}">Ajouter un commentaire</a></li>
+    </ul>
+</div>
+{% endblock %}

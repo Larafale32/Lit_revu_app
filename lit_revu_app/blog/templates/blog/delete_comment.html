@@ -1,0 +1,12 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+    <h1>Supprimer le commentaire</h1>
+    <p>Êtes vous sur de vouloir supprimer le commentaire ?</p>
+      <form action="" method="post">
+            {% csrf_token %}
+            <input type="submit" value="OUI">
+      </form>
+    <a href="{% url 'post-detail' %}">Annuler</a>
+{% endblock %}

@@ -1,0 +1,12 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <div class="form-container">
+        <form action="" method="post">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <input type="submit" value="Envoyer">
+            <small><a class="btn" href="{% url 'post-detail' form.instance.post.id %}">Annuler</a></small>
+        </form>
+    </div>
+{% endblock %}

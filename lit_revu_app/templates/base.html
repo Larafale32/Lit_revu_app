@@ -1,0 +1,36 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>{% block title %}LitRevu{% endblock title %}</title>
+    <link rel="stylesheet" type="text/css" href="{% static 'blog/css/style.css' %}">
+    <script src="{% static 'blog/scripts/main.js' %}" type="module"  defer></script>
+</head>
+<body>
+    <header class="site-header">
+        <div class="logo">
+            <a href="{% url 'home' %}">LitRevu</a>
+        </div>
+        <nav class="nav-links">
+            <a href="{% url 'post_list' %}">Posts</a>
+            <a href="{% url 'post-create' %}">Créer</a>
+            <a href="{% url 'contact-us' %}">Contact</a>
+            <a href="{% url 'following-list' %}">Abonnements</a>
+            <form action="{% url 'logout' %}" method="post" style="display:inline;">
+                {% csrf_token %}
+                <button type="submit" class="logout-btn">Déconnexion</button>
+            </form>
+        </nav>
+    </header>
+
+    <main class="main-content">
+        {% block content %}
+        {% endblock content %}
+    </main>
+
+    <footer class="site-footer">
+        <p>&copy; 2025 LitRevu — Partageons notre passion des livres</p>
+    </footer>
+</body>
+</html>

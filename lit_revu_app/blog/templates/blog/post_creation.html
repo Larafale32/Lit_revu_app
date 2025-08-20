@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="post-choice-container">
+  
+  <div class="post-card">
+    <img src="https://www.shutterstock.com/image-illustration/abstract-human-antique-statue-hand-600nw-2361539927.jpg" alt="Créer une review">
+    <h2>Créer une review</h2>
+    <p>Partagez votre propre critique de livre et inspirez les autres lecteurs.</p>
+    <a href="{% url 'create-review' %}" class="btn">Créer review</a>
+  </div>
+
+  <div class="post-card">
+    <img src="https://static.vecteezy.com/ti/vecteur-libre/p1/10845181-doute-d-affaires-et-reflechir-pour-le-travail-de-question-suspicion-de-femme-et-travail-de-conseil-pour-demander-le-concept-d-illustrationle-de-reponse-marque-d-idee-de-poursuite-et-determination-de-l-incertitude-informations-douteuses-personnes-vectoriel.jpg" alt="Créer un ticket">
+    <h2>Créer un ticket</h2>
+    <p>Demander une critique sur un livre de votre choix.</p>
+    <a href="{% url 'create-ticket' %}" class="btn">Créer ticket</a>
+  </div>
+
+</div>
+{% endblock %}

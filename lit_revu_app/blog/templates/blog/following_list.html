@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<h1>Abonnements</h1>
+<h2>Utilisateurs suivis</h2>
+<ul>
+    {% for f in following %}
+        <li>
+            <a href="{% url 'profile' f.followed.username %}">{{ f.followed.username }}</a>
+        </li>
+    {% empty %}
+        <li>Vous ne suivez personne.</li>
+    {% endfor %}
+</ul>
+
+<h2>Mes abonnés</h2>
+<ul>
+    {% for f in followers %}
+        <li><a href="{% url 'profile' f.follower.username %}">{{ f.follower.username }}</a></li>
+    {% empty %}
+        <li>Aucun abonné.</li>
+    {% endfor %}
+</ul>
+{% endblock %}

@@ -1,0 +1,429 @@
+/* === Styles pour la page post_list === */
+
+.posts-container {
+    max-width: 1100px;
+    margin: 40px auto;
+    padding: 0 20px;
+}
+
+.posts-container h1 {
+    color: #fdf6e3;
+    text-align: center;
+    margin-bottom: 40px;
+}
+
+.posts-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: 25px;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.post-card {
+    background: rgba(255, 255, 255, 0.12);
+    border-radius: 16px;
+    padding: 20px;
+    box-shadow: 0 8px 32px rgba(0,0,0,0.25);
+    backdrop-filter: blur(12px);
+    border: 1px solid rgba(255, 255, 255, 0.18);
+    display: flex;
+    flex-direction: column;
+    color: #fdf6e3;
+    transition: transform 0.3s ease;
+}
+
+.post-card:hover {
+    transform: translateY(-5px);
+}
+
+.post-card a.title-link {
+    font-size: 1.4rem;
+    font-weight: 600;
+    color: #fdf6e3;
+    text-decoration: none;
+    margin-bottom: 15px;
+}
+
+.post-card a.title-link:hover {
+    color: #d4a373;
+    text-decoration: underline;
+}
+
+.post-actions {
+    margin-top: auto;
+    display: flex;
+    gap: 15px;
+}
+
+.post-actions a {
+    padding: 8px 14px;
+    border-radius: 8px;
+    font-weight: 500;
+    text-decoration: none;
+    color: #fdf6e3;
+    background-color: rgba(255, 255, 255, 0.25);
+    border: 1px solid rgba(255,255,255,0.3);
+    transition: background-color 0.3s ease;
+}
+
+.post-actions a:hover {
+    background-color: rgba(255, 255, 255, 0.4);
+}
+
+.post-actions a.modify-btn {
+    background-color: rgba(70, 130, 180, 0.6);
+    border-color: rgba(70, 130, 180, 0.8);
+}
+
+.post-actions a.modify-btn:hover {
+    background-color: rgba(70, 130, 180, 0.8);
+}
+
+.post-actions a.delete-btn {
+    background-color: rgba(230, 57, 70, 0.6);
+    border-color: rgba(230, 57, 70, 0.8);
+}
+
+.post-actions a.delete-btn:hover {
+    background-color: rgba(230, 57, 70, 0.8);
+}
+
+
+
+/* === Styles pour la page post_detail === */
+
+.post-detail-container {
+    max-width: 900px;
+    margin: 40px auto;
+    padding: 30px 40px;
+    background: rgba(20, 20, 30, 0.6); /* fond sombre semi-transparent */
+    border-radius: 16px;
+    box-shadow: 0 8px 32px rgba(0,0,0,0.6);
+    color: #fdf6e3; /* texte clair */
+    font-family: 'Inter', sans-serif;
+    line-height: 1.6;
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+}
+
+.post-detail-container img {
+    width: 350px;
+    height: 450px;
+    align-self: center;
+    margin-bottom: 1rem;
+    border-radius: 5px;
+}
+
+.post-detail-container h1 {
+    font-size: 2.4rem;
+    margin-bottom: 20px;
+    color: #fdf6e3;
+}
+
+.post-detail-container ul li {
+    padding: 8px 0;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    color: #f5f2eb;
+}
+
+.post-detail-container ul li:last-child {
+    border-bottom: none;
+}
+
+.post-detail-container a {
+    color: #d4a373;
+    text-decoration: none;
+    font-weight: 600;
+}
+
+.post-detail-container a:hover {
+    text-decoration: underline;
+}
+
+/* Boutons Modifier / Supprimer */
+.post-detail-container li a,
+.post-detail-container button.delete-comment-button {
+    background-color: rgba(212, 163, 115, 0.25);
+    border: 1px solid rgba(212, 163, 115, 0.5);
+    padding: 8px 14px;
+    border-radius: 8px;
+    margin-right: 10px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    color: #d4a373;
+}
+
+.post-detail-container li a:hover,
+.post-detail-container button.delete-comment-button:hover {
+    background-color: rgba(212, 163, 115, 0.45);
+}
+
+/* Modal de confirmation */
+.deleteModal {
+    display: none;
+    background: rgba(20, 20, 30, 0.85);
+    color: #fdf6e3;
+    border-radius: 12px;
+    box-shadow: 0 12px 36px rgba(0,0,0,0.8);
+}
+
+/* Ajuste boutons modal */
+.deleteModal button[type="submit"] {
+    background-color: #d62828;
+    color: white;
+}
+
+.deleteModal button[type="submit"]:hover {
+    background-color: #b71c1c;
+}
+
+.deleteModal .button-non {
+    background-color: #aaa;
+    color: #222;
+}
+
+.deleteModal .button-non:hover {
+    background-color: #888;
+}
+
+
+/* Formulaires communs : contact, post_create, post_update, etc. */
+
+/* Conteneur principal */
+.post-choice-container {
+    display: flex;
+    justify-content: center;
+    gap: 2rem;
+    padding: 2rem;
+    flex-wrap: wrap;
+}
+
+/* Carte */
+.post-card {
+    background: rgba(212, 163, 115, 0.25);
+    border-radius: 12px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+    width: 280px;
+    text-align: center;
+    padding: 1.5rem;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.post-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 6px 18px rgba(0,0,0,0.15);
+}
+
+/* Image */
+.post-card img {
+    width: 200px;
+    height: 270px;
+    align-self: center;
+    margin-bottom: 1rem;
+    border-radius: 5px;
+}
+
+/* Titre */
+.post-card h2 {
+    font-size: 1.3rem;
+    margin-bottom: 0.5rem;
+}
+
+/* Texte */
+.post-card p {
+    font-size: 0.95rem;
+    color: white;
+    margin-bottom: 1rem;
+}
+
+/* Bouton */
+.post-card .btn {
+    display: inline-block;
+    padding: 0.6rem 1.2rem;
+    background-color: #d4a373;
+    color: white;
+    text-decoration: none;
+    border-radius: 6px;
+    transition: background-color 0.2s ease;
+}
+
+.post-card .btn:hover {
+    background-color: #753c04;
+}
+
+
+.form-container {
+    max-width: 600px;
+    margin: 50px auto;
+    background: rgba(255, 255, 255, 0.12);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border-radius: 16px;
+    padding: 30px 40px;
+    box-shadow: 0 8px 32px rgba(0,0,0,0.25);
+    border: 1px solid rgba(255, 255, 255, 0.18);
+    color: #fdf6e3;
+    font-family: 'Inter', sans-serif;
+}
+
+.form-container h1 {
+    margin-bottom: 25px;
+    font-size: 2rem;
+    text-align: center;
+    color: #fdf6e3;
+}
+
+.form-container form {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.form-container label {
+    font-weight: 600;
+    margin-bottom: 8px;
+}
+
+.form-container input[type="text"],
+.form-container textarea,
+.form-container input[type="email"],
+.form-container input[type="url"] {
+    padding: 12px 15px;
+    border-radius: 8px;
+    border: 1px solid rgba(255,255,255,0.4);
+    background: rgba(255, 255, 255, 0.08);
+    color: #fdf6e3;
+    font-size: 1rem;
+    transition: border-color 0.3s ease;
+    font-family: 'Inter', sans-serif;
+}
+
+.form-container input[type="text"]:focus,
+.form-container textarea:focus,
+.form-container input[type="email"]:focus,
+.form-container input[type="url"]:focus {
+    outline: none;
+    border-color: #d4a373;
+    background: rgba(255, 255, 255, 0.15);
+}
+
+.form-container textarea {
+    min-height: 120px;
+    resize: vertical;
+}
+
+.form-container input[type="submit"] {
+    align-self: center;
+    padding: 12px 36px;
+    font-weight: 600;
+    font-size: 1.1rem;
+    color: #fdf6e3;
+    background-color: rgba(212, 163, 115, 0.7);
+    border: none;
+    border-radius: 12px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    font-family: 'Inter', sans-serif;
+}
+
+.form-container input[type="submit"]:hover {
+    background-color: rgba(212, 163, 115, 0.9);
+}
+
+/* Page d'accueil fux */
+
+
+.grid {
+  /* transforme .grid en vrai conteneur grille */
+  display: grid;
+  
+  gap: 30px;
+
+  margin: 0 auto;    /* centre le bloc dans la page */
+  padding: 16px;
+}
+
+/* Le flux prend toute la ligne de la grille au-dessous des 3 cards */
+.flux {
+  grid-column: 1 / -1;     /* s'étend sur toutes les colonnes */
+  display: flex;
+  justify-content: center; /* centre le contenu du flux */
+  margin-top: 16px;
+}
+
+/* On spécialise la grille du flux pour centrer les cartes */
+.home-posts-grid {
+  display: grid; 
+  gap: 30px;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+.post-actions {
+    justify-content: center;
+}
+/* Assure une largeur cohérente des cartes du flux sans impacter d'autres .post-card */
+.home-posts-grid .post-card {
+  width: 400px;
+}
+
+/* Page profile */
+
+.modal {
+  display: none;
+  position: fixed;
+  z-index: 1000;
+  left: 0; top: 0;
+  width: 100%; height: 100%;
+  background-color: rgba(0,0,0,0.5); /* fond semi-transparent */
+  justify-content: center;
+  align-items: center;
+}
+
+.modal-content {
+  background: white;
+  padding: 20px 30px;
+  border-radius: 12px;
+  text-align: center;
+  max-width: 300px;
+  box-shadow: 0 8px 24px rgba(0,0,0,0.3);
+}
+
+#followMessage {
+    text-align: center;
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
+.button_follow {
+    display: flex;
+    padding: 0.6rem 1.2rem;
+    background-color: #0a1288;
+    color: white;
+    text-decoration: none;
+    border-radius: 6px;
+    transition: background-color 0.2s ease;
+}
+
+.button_follow:hover {
+    background-color: #4895e6;
+}
+
+.button_unfollow {
+    display: flex;
+    align-self: center;
+    justify-content: center;
+    padding: 0.6rem 1.2rem;
+    background-color: #911b37;
+    color: white;
+    text-decoration: none;
+    border-radius: 6px;
+    transition: background-color 0.2s ease;
+}
+
+.button_unfollow:hover{
+    background-color: #c12c6a;
+}
