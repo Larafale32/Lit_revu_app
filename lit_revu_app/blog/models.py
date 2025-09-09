@@ -41,8 +41,8 @@ class Post(models.Model):
     
     
 class Photo(models.Model):
-    image = models.ImageField(upload_to='images/')
-    caption = models.CharField(max_length=200, blank=True)
+    image = models.ImageField(upload_to='images/', null=True, blank=True)
+    caption = models.CharField(max_length=200, null=True, blank=True)
     uploader = models.ForeignKey(settings.AUTH_USER_MODEL,
                                  on_delete=models.CASCADE)
     date_created = models.DateTimeField(auto_now_add=True)
@@ -62,6 +62,9 @@ class Follow(models.Model):
     follower = models.ForeignKey(User, on_delete=models.CASCADE, related_name="following")
     followed = models.ForeignKey(User, on_delete=models.CASCADE, related_name="followers")
     created_at = models.DateTimeField(auto_now_add=True)
+
+    class Meta:
+        unique_together = ("follower", "followed")
 
     def __str__(self):
         return f"{self.follower} suit {self.followed}"

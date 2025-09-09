@@ -8,8 +8,8 @@
         <li>Description : {{ post.description }}</li>
         <li>Date de création : {{ post.create_at }}</li>
         <li>Active : {{ post.active|yesno }}</li>
-        {% if post.image %}
-        <li><img src="{{ post.image.image.url }}"></li>
+        {% if post.image and post.image.image %}
+            <li><img src="{{ post.image.image.url }}" alt="{{ post.image.caption }}"></li>
         {% endif %}
         {% if post.official_homepage %}
             <li><a href="{{ post.official_homepage }}" target="_blank" rel="noopener">Site officiel</a></li>
