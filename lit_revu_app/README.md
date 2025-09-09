@@ -19,7 +19,7 @@ L’objectif est de fournir une plateforme simple pour partager des critiques de
 
 ---
 
-## 🛠️ Installation  
+## Installation  
 
 ### 1. Cloner le projet  
 ```bash
@@ -49,7 +49,9 @@ python manage.py createsuperuser
 python manage.py runserver
 ```
 
-Structure du projet (simplifiée)
+## Structure du projet (simplifiée)
+
+```bash 
 lit_revu_app/
 │── manage.py
 │── README.md
@@ -70,3 +72,4 @@ lit_revu_app/
 │   ├── urls.py
 │   ├── templates/
     └── static/
+```
