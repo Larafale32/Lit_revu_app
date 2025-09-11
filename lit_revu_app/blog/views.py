@@ -3,15 +3,20 @@ from django.http import HttpResponse, HttpResponseRedirect, JsonResponse
 from django.db.models import Q
 from django.shortcuts import render, redirect, get_object_or_404
 from django.urls import reverse
+from django.contrib import messages
+
+
 from blog.models import Post, Commentaire, Follow
 from authentication.models import User
-
 from . import forms, models
 from blog.forms import ContactUsForm, TicketForm, ReviewForm, CommentForm, PhotoForm
 
 @login_required()
 def home(request):
-    posts = Post.objects.all().order_by('-update_at')
+    followed_users = list(Follow.objects.filter(follower=request.user).values_list('followed', flat=True))
+    all_users = followed_users + [request.user.id]
+
+    posts = Post.objects.filter(author__in=all_users).order_by('-update_at')
     return render(request, 'blog/blog.html',
                   {'posts': posts})
 
@@ -58,8 +63,11 @@ def comment_update(request, id):
     return render(request, 'blog/update_comment.html', {'form': form})
 
 def comment_delete(request, id):
-    comment = Commentaire.objects.get(id=id)
+    comment = get_object_or_404(Commentaire, id=id)
     post_id = comment.post.id
+    if comment.author != request.user:
+        messages.error(request, "Vous n'êtes pas autorisé à supprimer ce commentaire")
+        
     comment.delete()
     return redirect('post-detail', id=post_id)
 
@@ -124,7 +132,11 @@ def create_review(request, ticket_id=None):
 
 
 def post_update(request, id):
-    post = Post.objects.get(id=id)
+    post = get_object_or_404(Post, id=id)
+
+    if post.author != request.user:
+        messages.error(request, "Vous n'êtes pas autorisé à modifier ce post")
+    
     if post.type == 'ticket':
         post_form_class = TicketForm
     else:
@@ -156,7 +168,12 @@ def post_update(request, id):
 
 
 def post_delete(request, id):
-    post = Post.objects.get(id=id)
+    post = get_object_or_404(Post, id=id)
+
+    if post.author != request.user:
+        messages.error(request, "Vous n'êtes pas autorisé à supprimer ce post")
+        return 
+
     if request.method =='POST':
         post.delete()
         return redirect('post-list')

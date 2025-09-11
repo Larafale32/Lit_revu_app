@@ -14,10 +14,12 @@
         {% if post.official_homepage %}
             <li><a href="{{ post.official_homepage }}" target="_blank" rel="noopener">Site officiel</a></li>
         {% endif %}
+        {% if request.user == post.author %}
         <li>
             <a href="{% url 'post-update' post.id %}">Modifier</a>
             <a href="{% url 'post-delete' post.id %}">Supprimer</a>
         </li>
+        {% endif %}
     </ul>
 
     <h2>Commentaires</h2>
@@ -27,8 +29,10 @@
         <li>
             <strong>{{ commentaire.author }} :</strong> {{ commentaire.text }}
             <br><small>Posté le {{ commentaire.created_at }}</small>
+            {% if request.user == commentaire.author %}
             <a href="{% url 'update-comment' commentaire.id %}">Modifier</a>
             <button type="button" class="delete-comment-button" data-comment-id="{{ commentaire.id }}">Supprimer</button>
+            {% endif %}
             <div class="deleteModal">
                 <p>Es-tu sûr de vouloir supprimer ce commentaire ?</p>
                 <form class="deleteForm" method="POST">

@@ -12,11 +12,14 @@
             <div class="photo">
                 <a href="{% url 'post-detail' post.id %}"><img src="{{post.image.image.url }}" alt="{{ post.image.caption }}"></img></a>
             </div>
-            {% endif %}        
+            {% endif %}       
             <div class="post-actions">
+                {% if request.user == post.author %} 
                 <a href="{% url 'post-update' post.id %}" class="modify-btn">Modifier</a>
                 <a href="{% url 'post-delete' post.id %}" class="delete-btn">Supprimer</a>
+                {% endif %}
             </div>
+            
         </li>
         {% empty %}
         <li>Aucun post disponible.</li>
