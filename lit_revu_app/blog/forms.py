@@ -30,17 +30,21 @@ class TicketForm(forms.ModelForm):
 
 
 class ReviewForm(forms.ModelForm):
+    parent_post = forms.ModelChoiceField(
+        queryset=Post.objects.filter(type='ticket'),
+        required=False,
+        label="Répond à ce ticket"
+    )
     class Meta:
         model = Post
-        fields = ['title', 'description', 'rating']
+        fields = ['title', 'description', 'rating', 'parent_post']
         widgets = {
             'description': forms.Textarea(attrs={
                 'rows': 6, 
                 'placeholder': 'Votre critique...'
             }),
         }
-
-
+        
 class CommentForm(forms.ModelForm):
     class Meta:
         model = Commentaire

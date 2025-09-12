@@ -107,6 +107,7 @@ def create_review(request, ticket_id=None):
     if request.method == 'POST':
         form = ReviewForm(request.POST)
         photo_form = PhotoForm(request.POST, request.FILES)
+
         if form.is_valid() and photo_form.is_valid():
             photo = photo_form.save(commit=False)
             photo.uploader = request.user
@@ -116,12 +117,17 @@ def create_review(request, ticket_id=None):
             review.author = request.user
             review.type = 'review'
             review.image = photo
+
+            # ticket choisi via le champ parent_post ou passé dans l’URL
             if ticket:
                 review.parent_post = ticket
+            else:
+                review.parent_post = form.cleaned_data.get('parent_post')
+
             review.save()
             return redirect('post-detail', review.id)
     else:
-        form = ReviewForm()
+        form = ReviewForm(initial={'parent_post': ticket})
         photo_form = PhotoForm()
 
     return render(request, 'blog/create_review.html', {
@@ -176,7 +182,7 @@ def post_delete(request, id):
 
     if request.method =='POST':
         post.delete()
-        return redirect('post-list')
+        return redirect('home')
 
     return render(request, 'blog/delete_post.html',
                   {'post': post})

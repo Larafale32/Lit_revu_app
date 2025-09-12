@@ -22,6 +22,30 @@
         {% endif %}
     </ul>
 
+    {% if post.type == 'review' and post.parent_post %}
+    <h2>Demande de critique associée</h2>
+    <div class="linked-ticket">
+        <a href="{% url 'post-detail' post.parent_post.id %}">
+            {{ post.parent_post.title }}
+        </a>
+        <p>{{ post.parent_post.description|truncatewords:30 }}</p>
+    </div>
+    {% endif %}
+
+    {% if post.type == 'ticket' and post.reviews.all %}
+        <h2>Critiques associées</h2>
+        <ul>
+            {% for review in post.reviews.all %}
+                <li>
+                    <a href="{% url 'post-detail' review.id %}">{{ review.title }}</a>
+                    <p>{{ review.description|truncatewords:20 }}</p>
+                </li>
+            {% empty %}
+                <li>Aucune critique pour le moment.</li>
+            {% endfor %}
+        </ul>
+    {% endif %}
+
     <h2>Commentaires</h2>
 
     <ul>
