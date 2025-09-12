@@ -58,18 +58,20 @@ lit_revu_app/
 │── requirements.txt
 │── db.sqlite3
 │── seed.py            # script pour alimenter la base de données 
+
+├── lit_revu_app/
+│   ├── url.py         # Gére les routages des pages 
+│   └── settings.py
 │
 ├── blog/              # Application principale
 │   ├── models.py      # Modèles (Billets, Commentaires, Follows)
 │   ├── views.py       # Vues (logique métier)
-│   ├── urls.py        # Routage des pages
 │   ├── templates/     # Templates HTML
 │   └── static/        # Fichiers CSS/JS
 │
 ├── authentication/    # Application pour la gestion des utilisateurs
 │   ├── models.py
 │   ├── views.py
-│   ├── urls.py
 │   ├── templates/
     └── static/
 ```
